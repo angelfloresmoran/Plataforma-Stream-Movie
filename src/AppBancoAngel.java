@@ -8,7 +8,14 @@ public class AppBancoAngel {
         int numeroOperacion = 0;
         double montoRetirar;
         double montoDepositar;
-        Scanner operacionArealizar = new Scanner(System.in);
+        String menu = """
+                **Escriba la opción Deseada **
+                1 - Consultar saldo
+                2 - Retirar
+                3 - Depositar
+                9 - Salir
+                """;
+        Scanner operacionARealizar = new Scanner(System.in);
 
         System.out.println("***********BIENVENIDO A BANCO ANGEL***************\n");
         System.out.println("Nombre del cliente: " + nombreUsuario);
@@ -17,12 +24,8 @@ public class AppBancoAngel {
         System.out.println("**************************************************");
 
         while (numeroOperacion != 9){
-            System.out.println("**Escriba la opción Deseada **");
-            System.out.println("1 - Consultar saldo");
-            System.out.println("2 - Retirar");
-            System.out.println("3 - Depositar");
-            System.out.println("9 - Salir");
-            numeroOperacion = operacionArealizar.nextInt();
+            System.out.println(menu);
+            numeroOperacion = operacionARealizar.nextInt();
 
             switch (numeroOperacion){
                 case 1:
@@ -30,17 +33,24 @@ public class AppBancoAngel {
                     break;
                 case 2:
                     System.out.println("Ingrese el valor que desea retirar: \n");
-                    montoRetirar = operacionArealizar.nextDouble();
+                    montoRetirar = operacionARealizar.nextDouble();
                     if (montoRetirar < saldoUsuario && montoRetirar > 0){
                         System.out.println("Su saldo Actualizado es de: " + (saldoUsuario -= montoRetirar));
                     } else if (montoRetirar > saldoUsuario) {
                         System.out.println("Saldo insuficiente");
+                    }else if (montoRetirar <=0){
+                        System.out.println("Ingresa un valor mayor a 0");
                     }
                     break;
                 case 3:
                     System.out.println("Ingrese el monto que desea depositar");
-                    montoDepositar = operacionArealizar.nextDouble();
-                    System.out.println("Su saldo Actualizado es de: " + (saldoUsuario += montoDepositar));
+                    montoDepositar = operacionARealizar.nextDouble();
+                    if (montoDepositar > 0){
+                        System.out.println("Su saldo Actualizado es de: " + (saldoUsuario += montoDepositar));
+                    }
+                    else {
+                        System.out.println("Valor no valido! Ingrese un monto mayor a 0");
+                    }
                     break;
                 case 9:
                     System.out.println("Saliendo del sistema");
