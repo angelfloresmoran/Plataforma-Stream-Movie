@@ -12,5 +12,6 @@ public class Loops {
             mediaEvalcuaciones = mediaEvalcuaciones + nota;
         }
         System.out.println("La media de evaluaciones para Lone Survivor es de: " + mediaEvalcuaciones / 3);
+        lecturaTeclado.close();
     }
 }
